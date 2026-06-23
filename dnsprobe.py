@@ -53,7 +53,7 @@ def doh_query(name: str, rtype: str, timeout: float) -> list[str]:
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             data = json.loads(resp.read().decode("utf-8"))
-    except Exception:  # noqa: BLE001 - one failed record type shouldn't abort
+    except Exception:  # noqa: BLE001
         return []
     return [a["data"] for a in data.get("Answer", []) if "data" in a]
 
